@@ -15,6 +15,7 @@
 		<header id="header" class="header contenedor"> <!-- Cabecera o Header de la página -->
 
 			<figure class="logotipo"> <!-- Logotipo -->
+
 				<img src="images/invie.png" width="186" height="60" alt="Invie - Logotipo" />
 			</figure>
 			<span class="burguer-button icon-menu" id="burguer-button"></span>
@@ -30,7 +31,7 @@
 						<a href="#guitarras">Guitarras</a>
 					</li>
 					<li>
-						<a href="precios.html">Precios</a>
+						<a href="preciostabla.html">Precios</a>
 					</li>
 				</ul>
 			</nav>   <!-- menu -->
@@ -44,9 +45,20 @@
 
 	<section id="guitarras" class="guitarras contenedor">
 		<h2>Nuestras Guitarras</h2><!-- Titulo -->
+
+
+
+		<div class="video-demo-contenedor">
+			<div class="video-demo">
+				<div class="video-responsive-contenedor">
+					<iframe class="video-responsive-src" width="560" height="315" src="https://www.youtube.com/embed/R1dW8M4EqYY?rel=0" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>	
+		</div>
+		
 		<article class="guitarra1"> <!-- Guitarra 1 -->
 			<figure>
-				<img class="derecha" src="images/invie-acustica.png" width="330" height="" alt="Logo Guitarra Acustica">
+				<img class="derecha" data-src="images/invie-acustica.png" width="330" height="" alt="Logo Guitarra Acustica">
 			</figure>
 			<div class="contenedor-guitarra-a">
 					<h3 class="title_b">Invie Acustica</h3>
@@ -61,7 +73,7 @@
 		<!-- Guitarra 2 -->
 		<article class="guitarra2">
 			<figure>
-				<img class="izquierda" src="images/invie-classic.png" width="350" height="" alt="guitarra clasica">
+				<img class="izquierda" data-src="images/invie-classic.png" width="350" height="" alt="guitarra clasica">
 			</figure>
 			<div class="contenedor-guitarra-b">
 				<h3 class="title_b">Invie Classic</h3>
@@ -79,7 +91,7 @@
 <footer class="footer">
 	<div class="contenedor">
 		<div class="contacto">
-			<img src="images/invie-white.png" alt="logo invie blanco">
+			<img data-src="images/invie-white.png" alt="logo invie blanco">
 			<a href="tel:+50687142045"><strong>Teléfono</strong><span>(506) 443-0000</span></a>
 			<a href="mailto:contacto@invie.com"><strong>E-MAil</strong><span>contacto@invie.com</span></a>
 		</div>
@@ -137,6 +149,11 @@
 	</div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+
 <script>
 
 	/*   media queries */
@@ -147,12 +164,20 @@
 	
 	var $burguerButton = document.getElementById('burguer-button');
 	var $menu = document.getElementById('menu');
+
+
 	function toggleMenu() {
-			$menu.classList.toggle("active")
+			$menu.classList.toggle("active");
+			};
+
+	function showMenu() {
+			$menu.classList.add("active");
+			};
+	function hideMenu() {
+			$menu.classList.remove("active");
 			};
 
 
-	
 
 function mediaQuery()
 	{
@@ -169,6 +194,34 @@ function mediaQuery()
 	}	
 
 	mediaQuery();
+ 
+
+
+   // Lazy loading    Sirve para cargar páginas o imagenes según el scroll
+
+	   var bLazy = new Blazy({
+	    // options
+	    selector:"img"
+		});
+
+
+
+	   // aquí instalamos los gestos hammerJS
+
+
+
+
+
+	   var $body = document.body;
+
+		
+
+			   var gestos = new Hammer($body);
+		gestos.on('swipeleft', hideMenu);
+
+			   var gestos = new Hammer($body);
+		gestos.on('swiperight', showMenu);
+
 
 </script>
 </body>
